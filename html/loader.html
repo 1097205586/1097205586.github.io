@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="CSS 层叠海浪特效 	 		html,body{ 			height: 100%; 			display: flex; 			justify-content: center; 			align-items: center; 			background: linear-gradient(antiquewhite, navajowhite);  		} 		.box{ 			width:">
+<meta name="description" content="CSS 脉冲loader 	 		html,body{ 			height: 100%; 			display: flex; 			justify-content: center; 			align-items: center; 			background: linear-gradient(antiquewhite, navajowhite); 		} 		.loader{ 			widt">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/html/sea.html">
+<meta property="og:url" content="http://yoursite.com/html/loader.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="CSS 层叠海浪特效 	 		html,body{ 			height: 100%; 			display: flex; 			justify-content: center; 			align-items: center; 			background: linear-gradient(antiquewhite, navajowhite);  		} 		.box{ 			width:">
+<meta property="og:description" content="CSS 脉冲loader 	 		html,body{ 			height: 100%; 			display: flex; 			justify-content: center; 			align-items: center; 			background: linear-gradient(antiquewhite, navajowhite); 		} 		.loader{ 			widt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T08:10:53.518Z">
+<meta property="og:updated_time" content="2018-12-12T09:10:52.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="CSS 层叠海浪特效 	 		html,body{ 			height: 100%; 			display: flex; 			justify-content: center; 			align-items: center; 			background: linear-gradient(antiquewhite, navajowhite);  		} 		.box{ 			width:">
+<meta name="twitter:description" content="CSS 脉冲loader 	 		html,body{ 			height: 100%; 			display: flex; 			justify-content: center; 			align-items: center; 			background: linear-gradient(antiquewhite, navajowhite); 		} 		.loader{ 			widt">
 
 
 
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/html/sea.html"/>
+  <link rel="canonical" href="http://yoursite.com/html/loader.html"/>
 
 
 
@@ -240,79 +240,81 @@
           <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-	<meta charset="utf-8">
-	<title>CSS 层叠海浪特效</title>
+	<title>CSS 脉冲loader</title>
 	<style type="text/css">
 		html,body{
 			height: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background: linear-gradient(antiquewhite, navajowhite); 
+			background: linear-gradient(antiquewhite, navajowhite);
 		}
-		.box{
-			width: 300px; 
-			height: 300px; 
-			background-color: white; 
-			border-radius: 10px; 
-			position: relative;
-			overflow: hidden;
+		.loader{
+			width: 300px;
+			height: 300px;
+			background-color: pink;
+			border-radius: 50%;
+			border: 12px solid hotpink;
+			animation: loader 1.5s infinite alternate ease-in-out;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 30%;
+			box-sizing: border-box;
 		}
-		.box>p{
-			position: absolute;
-			height: 20%;
-			width: 100%;
-			top: 40%;
-			text-align: center;
-			font-size: 24px;
-			padding: 0;
-			margin: 0;
-			letter-spacing: 0.4em;
-			color: white;
-			z-index: 8;
+		.loader span{
+			width: 0.5em;
+    		height: 30%;
+    		transform: scaleY(0.05) translateX(-0.5em);
+			display: inline-block;
+			margin-right: 1px;
+			background-color: hotpink;
+			animation: loaderSpan 1.5s infinite ease-in-out;
 		}
-		.box>.wave{
-			position: absolute;
-			border-radius: 46%;
-			width: 150%;
-			height: 150%;
-			left: -25%;
-			top: var(--h);
-			background-color: deepskyblue;
-			animation: wave linear forwards infinite;
-			z-index: var(--z);
-			transform-origin: 50% 48%;
+		.loader > span {
+    		animation-delay: calc(var(--n) * 0.05s);
 		}
-		.wave:nth-of-type(1) {
-			--h: -80%;
-			--z: 3;
-			animation-duration: 10s
+
+		.loader > span:nth-child(1) { --n: 1; }
+		.loader > span:nth-child(2) { --n: 2; }
+		.loader > span:nth-child(3) { --n: 3; }
+		.loader > span:nth-child(4) { --n: 4; }
+		.loader > span:nth-child(5) { --n: 5; -}
+		.loader > span:nth-child(6) { --n: 6; -}
+		.loader > span:nth-child(7) { --n: 7; }
+		.loader > span:nth-child(8) { --n: 8; }
+		.loader > span:nth-child(9) { --n: 9;}
+		.loader > span:nth-child(10) { --n: 10; }
+		@keyframes loader{
+			45%, 55% {
+        		transform: scale(1.05);
+    		}
 		}
-		.wave:nth-of-type(2) {
-			--h: -75%;
-			--z: 2;
-			opacity: 0.7;
-			animation-duration: 8s
-		}
-		.wave:nth-of-type(3) {
-			--h: -70%;
-			--z: 1;
-			opacity: 0.5;
-			animation-duration: 10s
-		}
-		@keyframes wave{
-			from {
-				transform: rotate(360deg);
-			}
+		@keyframes loaderSpan {
+			 0%, 100% {
+        		transform: scaleY(0.05) translateX(-0.5em);
+    		}
+		    15% {
+		        transform: scaleY(1.2) translateX(1em);
+		    }
+		    90%, 100% {
+		        background-color: hotpink;
+    		}
 		}
 	</style>
 </head>
 <body>
-	<div class="box">
-		<p>THE SEA</p>
-		<div class="wave"></div>
-		<div class="wave"></div>
-		<div class="wave"></div>
+	<div class="loader">
+		<span></span>
+		<span></span>
+		<span></span>	
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
 	</div>
 </body>
 </html>
