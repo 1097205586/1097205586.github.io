@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="centos,mysql,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="yum安装 mysql1.yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm2.yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release">
+<meta name="keywords" content="centos,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一个centos上安装mysql8.0.13的坑">
-<meta property="og:url" content="http://yoursite.com/2018/12/14/记一个centos上安装mysql8-0-13的坑/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/记一个centos上安装mysql8-0-13的坑/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="yum安装 mysql1.yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm2.yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-14T09:37:44.369Z">
+<meta property="og:updated_time" content="2018-12-14T10:22:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一个centos上安装mysql8.0.13的坑">
+<meta name="twitter:description" content="yum安装 mysql1.yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm2.yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release">
 
 
 
@@ -116,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/14/记一个centos上安装mysql8-0-13的坑/">
+  <link rel="canonical" href="http://yoursite.com/2018/09/14/记一个centos上安装mysql8-0-13的坑/">
 
 
 
@@ -229,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/记一个centos上安装mysql8-0-13的坑/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/记一个centos上安装mysql8-0-13的坑/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="啊">
@@ -258,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T17:37:44+08:00">
-                2018-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T17:37:44+08:00">
+                2018-09-14
               </time>
             
 
@@ -296,7 +300,11 @@
       
 
       
-        
+        <h2 id="yum安装-mysql"><a href="#yum安装-mysql" class="headerlink" title="yum安装 mysql"></a>yum安装 mysql</h2><p>1.yum仓库下载MySQL：sudo yum localinstall <a href="https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm" target="_blank" rel="noopener">https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm</a><br>2.yum仓库下载MySQL：sudo yum localinstall <a href="https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm" target="_blank" rel="noopener">https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm</a><br>3.yum仓库下载MySQL：sudo yum localinstall <a href="https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm" target="_blank" rel="noopener">https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm</a><br>4.检查MySQL服务状态：sudo service mysqld status<br>5.检查MySQL服务状态：sudo service mysqld status(<strong><em>这里非常重要一定要记下密码!!!</em></strong>)<br>6.本地MySQL客户端登录：mysql -uroot -p<br>7.输入密码为第5步查出的<br>8.修改root登录密码：ALTER USER ‘root‘@’localhost’ IDENTIFIED BY ‘密码’; <strong><em>密码要数字大小写字母加符号不能小于8为数否则报错</em></strong><br>9.修改端口号 /etc/my.conf  port = 2018<br>10.配置外网访问 update user set host = ‘%’ where user =’root’;<br>11.show global variables like ‘port’;可查看MySQL服务端口，如果看到的value为0，则说明没有使用密码登录，需要去修改my.cnf文件；</p>
+<h2 id="错误解决-Host-‘XXX’-is-not-allowed-to-connect-to-this-MySQL-server"><a href="#错误解决-Host-‘XXX’-is-not-allowed-to-connect-to-this-MySQL-server" class="headerlink" title="错误解决 Host ‘XXX’ is not allowed to connect to this MySQL server"></a>错误解决 Host ‘XXX’ is not allowed to connect to this MySQL server</h2><pre><code>多数都是没有开启外网访问, update user set host = &apos;%&apos; where user =&apos;用户名&apos;; 把响应的用户外网访问权限加上,另外要查询3306端口号是否对外开放
+</code></pre><h2 id="错误解决-Access-denied-for-user-‘root‘-’localhost’"><a href="#错误解决-Access-denied-for-user-‘root‘-’localhost’" class="headerlink" title="错误解决 Access denied for user ‘root‘@’localhost’"></a>错误解决 Access denied for user ‘root‘@’localhost’</h2><pre><code>修改 /etc/my.conf  添加skip-grant-tables 开启无密码登录 然后重启
+进入 mysql 数据库 修改登录密码：ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;密码&apos;; ***
+</code></pre>
       
     </div>
     
@@ -310,6 +318,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/centos-mysql/" rel="tag"># centos,mysql</a>
+          
+        </div>
       
 
       
@@ -380,8 +394,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -411,7 +434,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -434,6 +457,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#yum安装-mysql"><span class="nav-number">1.</span> <span class="nav-text">yum安装 mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误解决-Host-‘XXX’-is-not-allowed-to-connect-to-this-MySQL-server"><span class="nav-number">2.</span> <span class="nav-text">错误解决 Host ‘XXX’ is not allowed to connect to this MySQL server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误解决-Access-denied-for-user-‘root‘-’localhost’"><span class="nav-number">3.</span> <span class="nav-text">错误解决 Access denied for user ‘root‘@’localhost’</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
